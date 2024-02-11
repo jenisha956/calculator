@@ -15,28 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
         inputBox.value = "0";
         break;
       case "DEL":
-        inputBox.value = inputBox.value.length - 1;
+        inputBox.value = inputBox.value.slice(0, -1);
         break;
       case "=":
-        
-          inputBox.value = calculateResult(inputBox.value);
-        
+        inputBox.value = calculateResult(inputBox.value);
         break;
-      
-        default:
-          if (inputBox.value == "0" || inputBox.value == "Error") {
-              inputBox.value = value;
-          } else {
-              inputBox.value = inputBox.value + value;
-          }
-          
-          break;
+      default:
+        if (inputBox.value == "0" || inputBox.value == "Error") {
+          inputBox.value = value;
+        } else {
+          inputBox.value = inputBox.value + value;
+        }
+        break;
     }
   }
 
   function calculateResult(expression) {
-    
-       return new Function('return' + expression)();
-    
+    return new Function('return ' + expression)();
   }
 });
